@@ -18,7 +18,7 @@ with open(input_path) as file:
             calorie_sum += int(line)
 
 # Print max value 
-print(max(calorie_list))
+print(f"Sum of top elf: {max(calorie_list)}")
 
 # Print sum of top 3 values
-print(sum(get_n_max_values(list=calorie_list,n=3)))
+print(f"Sum of top 3 elves: {sum(get_n_max_values(list=calorie_list,n=3))}")
