@@ -13,7 +13,7 @@ def load_data(path:str) -> list:
             data.append((line[0],int(line[1])))
     return data
 
-# Move one know
+# Move one knot, probably could do this nicer
 def move_knot(pos_list:list) -> tuple:
     for i in range(1,len(pos_list)):
         x_diff = pos_list[i-1][X] - pos_list[i][X]
@@ -49,14 +49,9 @@ def move_knot(pos_list:list) -> tuple:
 def move_rope(command:tuple, pos_list:list) -> tuple:
     tail_list = []
     for i in range(0,command[1]):
-        if command[0] == 'L':
-            pos_list[0][X] -= 1
-        elif command[0] == 'R':
-            pos_list[0][X] += 1
-        elif command[0] == 'U':
-            pos_list[0][Y] += 1
-        elif command[0] == 'D':
-            pos_list[0][Y] -= 1
+        pos_list[0][X] += {'R':1, 'L':-1}.get(command[0], 0)
+        pos_list[0][Y] += {'D':-1, 'U':1}.get(command[0], 0)
+
         pos_list = move_knot(pos_list)
         tail_list.append(tuple(pos_list[-1]))
     return tail_list, pos_list
@@ -87,5 +82,3 @@ test()
 print(len(calculate_tail_visited_pos(load_data(r'2022\9\input'),generate_start_pos(2))))
 # Part 2
 print(len(calculate_tail_visited_pos(load_data(r'2022\9\input'),generate_start_pos(10))))
-
-
