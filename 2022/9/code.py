@@ -1,5 +1,3 @@
-import matplotlib.pyplot as plt
-
 # Define constans for clearity
 X = 0
 Y = 1
